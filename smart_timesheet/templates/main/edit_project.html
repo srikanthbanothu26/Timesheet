@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>edit Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<main class="h-screen flex items-center justify-center bg-gray-50">
+    <form method="POST" action="{{ url_for('main_bp.edit_project',id=project.id) }}" enctype="multipart/form-data"
+          class="w-full max-w-lg mx-auto flex flex-col gap-4">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.title.label }}
+            {{ form.title(class="border p-2 w-full") }}
+        </div>
+        <div>
+            {{ form.submit(class="bg-blue-500 text-white p-2 rounded") }}
+        </div>
+    </form>
+</main>
+</body>

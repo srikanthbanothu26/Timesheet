@@ -1,0 +1,58 @@
+{% extends "main/index.html" %}
+{% block main %}
+<main class="container mx-auto py-4 px-4">
+    <div class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Projects</h1>
+        <div class="flex items-center space-x-2">
+            <a href="{{ url_for('main_bp.create_project') }}" class="tex-center p-2 bg-blue-600 text-white rounded-md">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+            </a>
+            <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+            {{ projects|length }} Active
+            </span>
+        </div>
+    </div>
+    <!-- Responsive Grid: 1 col on mobile, 2 on tablet, 4 on desktop -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {% for project in projects %}
+        <div class="group flex flex-col bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200">
+            <div class="p-5">
+                <div class="flex items-center justify-between mb-2">
+                    <!-- Project Icon/Avatar placeholder -->
+                    <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+                        <span class="text-gray-500 group-hover:text-blue-600 font-bold uppercase">
+                            {{ project.title[:1] }}
+                        </span>
+                    </div>
+                    <a href="{{ url_for('main_bp.update_project', id=project.id) }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <h2 class="text-lg font-semibold text-gray-800 truncate" title="{{ project.title }}">
+                    {{ project.title }}
+                </h2>
+                <p class="text-sm text-gray-500 mt-1">Updated recently</p>
+            </div>
+
+            <div class="mt-auto border-t border-gray-100 bg-gray-50/50 rounded-b-xl">
+                <a href="{{ url_for('main_bp.get_project_tasks', project_id=project.id) }}"
+                   class="flex items-center justify-center py-3 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-colors rounded-b-xl">
+                    View Tasks
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock main %}

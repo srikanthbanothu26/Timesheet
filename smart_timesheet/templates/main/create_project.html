@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ "Edit Project" if project else "Create Project" }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+<main class="h-screen flex items-center justify-center bg-gray-50">
+
+    <form method="POST"
+          action="{{ url_for('main_bp.update_project', id=project.id) if project else url_for('main_bp.create_project') }}"
+          class="w-full max-w-lg mx-auto flex flex-col gap-4">
+
+        {{ form.hidden_tag() }}
+
+        <div>
+            {{ form.title.label }}
+            {{ form.title(class="border p-2 w-full") }}
+        </div>
+
+        <div>
+            {{ form.submit(
+            value="Update Project" if project else "Create Project",
+            class="bg-blue-500 text-white p-2 rounded w-full"
+            ) }}
+        </div>
+
+    </form>
+
+</main>
+
+</body>
+</html>

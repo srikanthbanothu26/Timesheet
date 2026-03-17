@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ "Edit Task" if task else "Create Task" }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+<main class="min-h-screen flex items-start justify-center py-20 bg-gray-50">
+
+    <form method="POST"
+          action="{{ url_for('main_bp.update_task', id=task.id) if task else url_for('main_bp.create_task') }}"
+          class="w-full max-w-lg mx-auto flex flex-col gap-4 bg-white p-6 shadow rounded">
+
+        {{ form.hidden_tag() }}
+
+        <div>
+            {{ form.title.label }}
+            {{ form.title(class="border p-2 w-full rounded") }}
+        </div>
+
+        <div>
+            {{ form.project.label }}
+            {{ form.project(class="border p-2 w-full rounded") }}
+        </div>
+
+        <div>
+            {{ form.assigned_users.label }}
+            {{ form.assigned_users(class="border p-2 w-full rounded", multiple=True) }}
+        </div>
+
+        <div>
+            {{ form.submit(
+            value="Update Task" if task else "Create Task",
+            class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded w-full"
+            ) }}
+        </div>
+
+    </form>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>verify email</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+</head>
+<body>
+<main class="h-screen flex flex-col items-center justify-center bg-gray-50">
+    <h1 class="flex justify-center text-blue-600 bold">Verify Email</h1>
+    <form action="{{ url_for('user.verify_email') }}" method="post">
+        <label>
+            <input type="text" placeholder="Enter your email address" name="email" class="border p-2 w-full">
+        </label>
+        <button type="submit">Next</button>
+    </form>
+</main>
+</body>
+</html>
